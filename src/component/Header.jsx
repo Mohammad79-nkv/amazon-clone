@@ -9,7 +9,7 @@ const Header = () => {
   const [{ basket }, dispatch] = useStateValue();
   const {pathname} = useLocation()
   console.log(pathname);
-  if(pathname ==="/login" ) {
+  if(pathname ==="/login" || pathname ==="/register") {
     return null
   }
   return (

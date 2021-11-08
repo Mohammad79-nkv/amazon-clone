@@ -1,55 +1,59 @@
-import { Fragment } from "react";
-import {useHistory} from "react-router"
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import {useHistory} from 'react-router'
 import { Link } from "react-router-dom";
-import * as Yup from "yup";
-import "./Login.css";
 import TextError from "../TextError";
+import * as Yup from "yup";
+import "./register.css";
 import { auth } from "../../firebase";
-const Login = () => {
-    const history = useHistory()
+
+const Register = () => {
+    const history = useHistory();
   const initialValues = {
     email: "",
     password: "",
+    passwordConfirm: "",
   };
   const validationSchema = Yup.object({
     email: Yup.string().required("Required").email("Email format is not Valid"),
     password: Yup.string().required("Required"),
+    passwordConfirm: Yup.string()
+      .oneOf([Yup.ref("password"), ""], "Password must match")
+      .required("Required"),
   });
   const onSubmit = (values) => {
-    const { email, password } = values;
-    // console.log(values);
+    const { email, passwordConfirm } = values;
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, passwordConfirm)
       .then((res) => {
         console.log(res);
-        history.replace("/")
+        history.replace("/login")
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div className="login">
+    <div className="register">
       <Link to="/">
         <img
-          className="login__logo"
+          className="register__logo"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
-          alt="login-logo"
+          alt="register-logo"
         />
       </Link>
-      <div class="login__container">
+      <div class="register__container">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
+          validateOnMount
         >
           {(formik) => {
             // console.log(formik);
             return (
               <fragment>
                 <Form>
-                  <h1 className="form-title">Sign-in</h1>
+                  <h1 className="form-title">Sign-up</h1>
                   <div className="form-control">
                     <label className="form-label" htmlFor="email">
                       E-mail
@@ -74,20 +78,29 @@ const Login = () => {
                     />
                     <ErrorMessage name="password" component={TextError} />
                   </div>
-                  <button className="login__signInBtn" type="submit">
-                    Sign in
+                  <div className="form-control">
+                    <label className="form-label" htmlFor="passwordConfirm">
+                      Confirm Password
+                    </label>
+                    <Field
+                      className="form-field"
+                      id="passwordConfirm"
+                      type="password"
+                      name="passwordConfirm"
+                    />
+                    <ErrorMessage
+                      name="passwordConfirm"
+                      component={TextError}
+                    />
+                  </div>
+                  <button
+                    className="register__signInBtn"
+                    type="submit"
+                    disabled={!formik.isValid}
+                  >
+                    Sign up
                   </button>
                 </Form>
-                <p className="login__text" disabled={!formik.isValid}>
-                  By signing-in you agree to Amazon Conditions of Use & Sale.
-                  Please see our Privacy Notice, our Cookies Notice and our
-                  Interest-Based Ads Notice
-                </p>
-                <Link to="/register">
-                  <button className="login__registerBtn">
-                    Create your Amazon Account
-                  </button>
-                </Link>
               </fragment>
             );
           }}
@@ -97,4 +110,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
