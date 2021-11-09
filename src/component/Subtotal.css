@@ -16,7 +16,7 @@
 .subtotal__gift > input {
     margin-right: 5px;
 } 
-.subtotal > button {
+.paymentBtn {
     background: #f0c14b;
     border-radius: 2px;
     width: 100%;
