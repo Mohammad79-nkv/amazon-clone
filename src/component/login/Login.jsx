@@ -1,13 +1,20 @@
 import { Fragment } from "react";
-import {useHistory} from "react-router"
+import { useHistory } from "react-router";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import "./Login.css";
 import TextError from "../TextError";
 import { auth } from "../../firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useStateValue } from "../../Store/StateProvider";
+import { useState } from "react";
+import Home from "./../Home";
 const Login = () => {
-    const history = useHistory()
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  const history = useHistory();
   const initialValues = {
     email: "",
     password: "",
@@ -22,13 +29,33 @@ const Login = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log(res);
-        history.replace("/")
+        console.log(res.user.email);
+        toast.success(`Hello, ${res.user.email}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        history.replace("/");
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
+  if (user) {
+    history.replace("/");
+  }
   return (
     <div className="login">
       <Link to="/">

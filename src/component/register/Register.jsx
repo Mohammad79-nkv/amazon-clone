@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import TextError from "../TextError";
 import * as Yup from "yup";
 import "./register.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebase";
 
 const Register = () => {
@@ -25,11 +27,27 @@ const Register = () => {
     auth
       .createUserWithEmailAndPassword(email, passwordConfirm)
       .then((res) => {
-        console.log(res);
+        toast.success(`User created`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         history.replace("/login")
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       });
   };
   return (
