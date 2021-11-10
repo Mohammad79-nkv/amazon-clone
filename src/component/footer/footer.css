@@ -1,0 +1,30 @@
+footer {
+    width: 100%;
+}
+
+.footer__container {
+    background-color: #232F3E;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer__section {
+    width: 20%;
+}
+
+.footer__title {
+    color: #FFFFFF;
+}
+
+.footer__link {
+    display: block;
+    text-decoration: none;
+    color: #DDDDDD;
+    padding: 2px 0;
+    font-size: 14px;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
