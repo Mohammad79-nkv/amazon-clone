@@ -1,11 +1,11 @@
 export const initialState = {
   basket: [],
-  user: null
+  user: null,
 };
 
 export const getTotal = (basket) => {
   return basket?.reduce((amount, item) => {
-    return amount + item.price;
+    return amount + item.price * item.amount;
   }, 0);
 };
 
@@ -27,11 +27,28 @@ const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
+    case "INCREASE_PRODUCT":
+      const allProduct = [...state.basket];
+      const product = allProduct.find((item) => item.id === action.id);
+      const btnClass = action.e.target.className;
+      if (btnClass === "increment") {
+        product.amount += 1;
+      }else if(btnClass === "decrement"){
+        product.amount -= 1;
+      }
+      const productIndex = allProduct.findIndex(
+        (item) => item.id === action.id
+      );
+      allProduct[productIndex] = product;
+      return {
+        ...state,
+        basket: [...allProduct],
+      };
     case "SET_USER":
       return {
         ...state,
-        user: action.user
-      }
+        user: action.user,
+      };
 
     default:
       break;

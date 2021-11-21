@@ -2,8 +2,8 @@ import './footer.css'
 const Footer = () => {
     return ( 
         <footer>
-            <div className="footer__container">
-                <div className="footer__section">
+            <div className="footer__container container-fluid p-3 row bg-dark mx-auto">
+                <div className="footer__section col col-12 col-sm-6 col-md-3 pb-5">
                     <h4 className="footer__title">Get to Know Us</h4>
                     <div className="footer__items">
                         <a href="#" className="footer__link">Careers</a>
@@ -14,7 +14,7 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div className="footer__section">
+                <div className="footer__section col col-12 col-sm-6 col-md-3 pb-5">
                     <h4 className="footer__title">Make Money with Us</h4>
                     <div className="footer__items">
                     <a href="#" className="footer__link">Sell products on Amazon</a>
@@ -28,7 +28,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-                <div className="footer__section">
+                <div className="footer__section col col-12 col-sm-6 col-md-3 pb-5">
                     <h4 className="footer__title">Amazon Payment Products</h4>
                     <div className="footer__items">
                     
@@ -39,7 +39,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-                <div className="footer__section">
+                <div className="footer__section col col-12 col-sm-6 col-md-3 pb-5">
                     <h4 className="footer__title">Let Us Help You</h4>
                     <div className="footer__items">
                     <a href="#" className="footer__link">Amazon and COVID-19</a>

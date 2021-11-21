@@ -1,17 +1,17 @@
-footer {
+/* footer {
     width: 100%;
-}
+} */
 
 .footer__container {
     background-color: #232F3E;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* justify-content: space-around;
+    flex-wrap: wrap; */
 }
 
-.footer__section {
+/* .footer__section {
     width: 20%;
-}
+} */
 
 .footer__title {
     color: #FFFFFF;
@@ -26,5 +26,6 @@ footer {
 }
 
 .footer__link:hover {
+    color: #DDDDDD;
     text-decoration: underline;
 }

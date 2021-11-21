@@ -1,9 +1,11 @@
-import React from "react";
+import React,{useRef} from "react";
+
 import { useStateValue } from "../Store/StateProvider";
 import './Product.css'
 
 const Product = ({id, title, image, price, rating}) => {
-  const [state, dispatch] = useStateValue()
+  const [{basket}, dispatch] = useStateValue()
+  const ref = useRef()
 
   const addToBasket = () => {
     dispatch({
@@ -13,9 +15,13 @@ const Product = ({id, title, image, price, rating}) => {
         title,
         image,
         price, 
-        rating
+        rating,
+        amount: 1
       }
     })
+    ref.current.innerHTML="In basket"
+    ref.current.disabled="true"
+    console.log(basket)
   }
   return (
     <div className="product">
@@ -36,7 +42,7 @@ const Product = ({id, title, image, price, rating}) => {
         src={image}
         alt=""
       />
-      <button type="button" onClick={addToBasket}>Add to Basket</button>
+      <button ref={ref} type="button" onClick={addToBasket}>Add to Basket</button>
     </div>
   );
 };

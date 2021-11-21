@@ -22,7 +22,7 @@ const Home = () => {
           <Product
             id="5"
             title="The lean startup"
-            price={29.9}
+            price={1}
             image="https://images-eu.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
             rating={5}
           />
