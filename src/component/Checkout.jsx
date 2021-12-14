@@ -15,7 +15,9 @@ const Checkout = () => {
           alt="checkout__ad"
         />
         <div>
-          <h3>Hello {user ? user.email : "Guest"}</h3>
+          <h3>
+            Hello, <strong>{user ? user.email : "Guest"}</strong>
+          </h3>
           <h2 className="checkout__title">Your shopping bascket</h2>
           {basket.map((item) => (
             <CheckoutProduct

@@ -1,5 +1,6 @@
 .checkoutProduct {
     display: flex;
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 20px
 }
@@ -26,4 +27,30 @@
 .checkoutProduct__title {
     font-size: 17px;
     font-weight: 800;
+}
+.checkoutProduct__btns{
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.remove-btn{
+    margin-right:10px;
+    background: #f0c14b;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111; 
+}
+.handleAmount-btns{
+    display: flex;
+    align-items:center;
+    margin-top: 10px;
+}
+.handleAmount-btns > p {
+    margin: 0 5px;
+}
+.handleAmount-btns > button{
+    background: #f0c14b;
+    border-color: #a88734 #9c7e31 #846a29;
 }

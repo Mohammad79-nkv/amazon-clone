@@ -30,7 +30,7 @@ const reducer = (state, action) => {
     case "INCREASE_PRODUCT":
       const allProduct = [...state.basket];
       const product = allProduct.find((item) => item.id === action.id);
-      const btnClass = action.e.target.className;
+      const btnClass = action.e.target.id;
       if (btnClass === "increment") {
         product.amount += 1;
       }else if(btnClass === "decrement"){

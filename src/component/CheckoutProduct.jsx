@@ -11,10 +11,10 @@ const CheckoutProduct = (props) => {
     dispatch({ type: "REMOVE_FROM_BASKET", id });
   };
   const handleTotalProduct = (e) => {
-      dispatch({ type: "INCREASE_PRODUCT", id, e });
-      if(productAmount === 1 && e.target.className === "decrement"){
-        dispatch({ type: "REMOVE_FROM_BASKET", id });
-      }
+    dispatch({ type: "INCREASE_PRODUCT", id, e });
+    if (productAmount === 1 && e.target.className === "decrement") {
+      dispatch({ type: "REMOVE_FROM_BASKET", id });
+    }
   };
   return (
     <div className="checkoutProduct">
@@ -36,14 +36,26 @@ const CheckoutProduct = (props) => {
               <p>*</p>
             ))}
         </div>
-        <button onClick={removeFromBaskethandler}>Remove from Basket</button>
-        <button onClick={(e) => handleTotalProduct(e)} className="increment">
-          +
-        </button>
-        <p>{productAmount}</p>
-        <button onClick={(e) => handleTotalProduct(e)} className="decrement">
-          -
-        </button>
+        <div className="checkoutProduct__btns">
+          <button className="btn remove-btn" onClick={removeFromBaskethandler}>Remove from Basket</button>
+          <div className="handleAmount-btns">
+            <button
+              onClick={(e) => handleTotalProduct(e)}
+              className="btn increment"
+              id="increment"
+            >
+              +
+            </button>
+            <p>{productAmount}</p>
+            <button
+              onClick={(e) => handleTotalProduct(e)}
+              className=" btn decrement"
+              id="decrement"
+            >
+              -
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
